@@ -23,7 +23,11 @@ public class AccountDAO {
 //			System.out.println("Number return " + delete);
 			ResultSet resultSet = statement.executeQuery("select * from account");
 			while (resultSet.next()) {
-				System.out.println(resultSet.getString(1));
+				System.out.println("ID of User is "+resultSet.getInt(1));
+				System.out.println("FirstName of User is "+resultSet.getString(2));
+				System.out.println("LastName of User is "+resultSet.getString(3));
+				System.out.println("Bal of User is "+resultSet.getInt(4));
+				System.out.println("----------------------------------------------------------------");
 			}
 					
 		} catch (SQLException e) {
