@@ -2,7 +2,6 @@ package com.training;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,6 +13,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Servlet implementation class LoginServlet
@@ -29,11 +30,16 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection connection;
 		try {
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/training", "root", "root@123");
 			String firstName = "";
 			String userName = request.getParameter("username");
 			String password = request.getParameter("password");
+	        List<String> orderIDs = new ArrayList<>();
+	        List<String> itemNames = new ArrayList<>();
+	        List<String> orderDates = new ArrayList<>();
+	        List<String> amounts = new ArrayList<>();
 			if (null != userName && null != password) {
 				if (connection != null) {
 					PreparedStatement statement = connection
@@ -49,12 +55,28 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			if (firstName.length() != 0) {
 				session.setAttribute("firstName", firstName);
+				
+				//fetching table logic
+				PreparedStatement statement = connection.prepareStatement("select * from orders");
+				ResultSet orderSet = statement.executeQuery();
+				while(orderSet.next()) {
+					 orderIDs.add(orderSet.getString("orderID"));
+	                 itemNames.add(orderSet.getString("item_name"));
+	                 orderDates.add(orderSet.getString("date_order_placed"));
+	                 amounts.add(orderSet.getString("amount"));
+				}
+                session.setAttribute("orderIDs", orderIDs);
+                session.setAttribute("itemNames", itemNames);
+                session.setAttribute("orderDates", orderDates);
+                session.setAttribute("amounts", amounts);	
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("successPage.jsp");
 				requestDispatcher.forward(request, response);
+				
+
 			} else {
 				session.setAttribute("error", "Invalid Login");
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("loginPage.jsp");
-				requestDispatcher.forward(request, response);
+				requestDispatcher.include(request, response);
 			}
 
 		} catch (SQLException e) {
