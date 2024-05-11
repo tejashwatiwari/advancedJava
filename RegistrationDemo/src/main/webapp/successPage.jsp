@@ -6,7 +6,7 @@
     
 </head>
 <body>
-    <h1>Welcome, <%= request.getSession().getAttribute("firstName") %></h1><br>
+    <h1>Welcome, <%= request.getSession().getAttribute("firstName") %></h1>
     <table border="1" class="table table-striped" style="width: 100%; max-width: 800px;">
      <thead class="thead-dark">
         <tr>
@@ -14,9 +14,7 @@
             <th scope="col">Item Name</th>
             <th scope="col">Date Ordered</th>
             <th scope="col">Amount</th>
-        </tr>
-  
-              </thead>
+        </tr></thead>
         <%
             List<String> orderIDs = (List<String>) request.getSession().getAttribute("orderIDs");
             List<String> itemNames = (List<String>) request.getSession().getAttribute("itemNames");
