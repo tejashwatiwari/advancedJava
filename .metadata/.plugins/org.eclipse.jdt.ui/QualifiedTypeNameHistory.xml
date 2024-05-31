@@ -9,4 +9,8 @@
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
+    <fullyQualifiedTypeName name="com.apex.BasicSpringProject.bean.PersonConstructorInjection"/>
+    <fullyQualifiedTypeName name="com.apex.BasicSpringProject.bean.PersonSetterInjection"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="com.apex.bean.User"/>
 </qualifiedTypeNameHistroy>
