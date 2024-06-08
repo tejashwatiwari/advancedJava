@@ -18,6 +18,7 @@
 		<h1>
        <% out.println(request.getAttribute("message")); %>
        </h1>
+       <div>
         <form action="registrationSuccessful" method="post" class="w-50">
             <div class="form-group">
                 <label for="firstname">FirstName:</label>

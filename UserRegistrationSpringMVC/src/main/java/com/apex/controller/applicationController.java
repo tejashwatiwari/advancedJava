@@ -37,10 +37,8 @@ public class applicationController {
 		ModelAndView modelAndView = new ModelAndView();
 		if (result == null) {
 			modelAndView.setViewName("successPage");
-
 			// Fetch the list of orders
 			List<Order> orders = orderDAO.getAllOrders();
-
 			// Add orders to the model
 			modelAndView.addObject("orderList", orders);
 			modelAndView.addObject("message", "Registration Succeeded, now You have access for Order Details!!");

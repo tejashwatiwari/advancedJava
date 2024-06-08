@@ -13,4 +13,8 @@
     <fullyQualifiedTypeName name="com.apex.BasicSpringProject.bean.PersonSetterInjection"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.apex.bean.User"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.ServletContext"/>
+    <fullyQualifiedTypeName name="org.springframework.web.context.support.AnnotationConfigWebApplicationContext"/>
+    <fullyQualifiedTypeName name="org.springframework.web.context.WebApplicationContext"/>
 </qualifiedTypeNameHistroy>

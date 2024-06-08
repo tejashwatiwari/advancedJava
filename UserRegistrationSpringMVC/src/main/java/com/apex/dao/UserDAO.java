@@ -19,7 +19,7 @@ public class UserDAO {
 
 	static {
 		try {
-// Load the MySQL JDBC driver
+			// Load the MySQL JDBC driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
