@@ -1,8 +1,8 @@
 package com.example.SpringBootDemo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.SpringBootDemo.beans.User;
+import com.example.SpringBootDemo.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/message")
 	public String getDemo() {
@@ -24,42 +28,31 @@ public class UserController {
 
 	}
 
+	@GetMapping("/user")
+	public User getUser(@RequestParam("id") int id) {
+		return userService.getUser(id);
+	}
+
 	@GetMapping
-	public List<User> getUser() {
-		User user = new User();
-		user.setName("Teja");
-		user.setAge(24);
-		user.setAddress("Fulla");
-
-		User user2 = new User();
-		user.setName("Tejaaa");
-		user.setAge(25);
-		user.setAddress("Hulla");
-
-		List<User> users = new ArrayList<User>();
-		users.add(user);
-		users.add(user2);
-		return users;
+	public List<User> getUsers() {
+		return userService.getUsers();
 	}
 
 	@PostMapping
 	public User createUser(@RequestBody User user) {
-		System.out.println(user);
-		// save in db next
-		return user;
+		return userService.addUser(user);
 	}
 
 	@PutMapping
 	public User updateUser(@RequestBody User user) {
 		System.out.println(user);
-		// update in db next
+		// Updating
 		return user;
 	}
 
 	@DeleteMapping
-	public User deleteUser(@RequestParam("id") String id) {
-		System.out.println("Deleted ID" + id);
-		return new User();
+	public String deleteUser(@RequestParam("id") int id) {
+		return userService.deleteUser(id);
 	}
 
 }
